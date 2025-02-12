@@ -1,8 +1,3 @@
-# Project Reset
+# Setup Routes
 
-This commit/segment resets the entire project, cleaning up all boilerplate code.  This provides a clean, basic file structure to build the application from scratch.
-
-## Commands Used
-
-* **Reset:** `npm run reset-project`
-* **Development Server:** `npx expo start`
+In this commit/segment we have setup various routes for our application. A specific folder strucutre is maintained.
