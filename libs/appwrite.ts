@@ -17,33 +17,79 @@ client
 export const avatar = new Avatars(client);
 export const account = new Account(client);
 
-export async function login() {
+// export async function login() {
+//   try {
+//     const redirectUri = Linking.createURL("/");
+//     console.log("Redirect URI:", redirectUri);
+//     const response = await account.createOAuth2Token(
+//       OAuthProvider.Google,
+//       redirectUri
+//     );
+//     if (!response) throw new Error("Create OAuth2 token failed");
+//     console.log("OAuth URL:", response.toString());
+
+//     const browserResult = await WebBrowser.openBrowserAsync(
+//       response.toString()
+//     );
+//     console.log("Browser Result:", browserResult);
+
+//     const subscription = Linking.addEventListener("url", async (event) => {
+//       console.log("Redirect Event:", event.url);
+//       const url = new URL(event.url);
+//       const secret = url.searchParams.get("secret");
+//       const userId = url.searchParams.get("userId");
+
+//       if (!secret || !userId) throw new Error("Invalid OAuth response");
+
+//       const session = await account.createSession(userId, secret);
+//       console.log("Session Created:", session);
+//       // return true;
+//     });
+//     return true
+//   } catch (error) {
+//     console.error(error);
+//     return false;
+//   }
+// }
+
+export async function login(refetch: () => void) {
   try {
     const redirectUri = Linking.createURL("/");
     console.log("Redirect URI:", redirectUri);
+
     const response = await account.createOAuth2Token(
       OAuthProvider.Google,
       redirectUri
     );
     if (!response) throw new Error("Create OAuth2 token failed");
 
-    const browserResult = await WebBrowser.openBrowserAsync(
-      response.toString()
-    );
+    console.log("OAuth URL:", response.toString());
 
-    const subscription = Linking.addEventListener("url", async (event) => {
-      console.log("Redirect Event:", event.url);
-      const url = new URL(event.url);
-      const secret = url.searchParams.get("secret");
-      const userId = url.searchParams.get("userId");
+    await WebBrowser.openBrowserAsync(response.toString());
 
-      if (!secret || !userId) throw new Error("Invalid OAuth response");
+    return new Promise((resolve, reject) => {
+      const subscription = Linking.addEventListener("url", async (event) => {
+        try {
+          console.log("Redirect Event:", event.url);
+          const url = new URL(event.url);
+          const secret = url.searchParams.get("secret");
+          const userId = url.searchParams.get("userId");
 
-      const session = await account.createSession(userId, secret);
-      console.log("Session Created:", session);
-      return true;
+          if (!secret || !userId) {
+            reject(new Error("Invalid OAuth response"));
+            return;
+          }
+
+          const session = await account.createSession(userId, secret);
+          console.log("Session Created:", session);
+
+          refetch(); // ✅ Now refetch after session creation
+          resolve(true);
+        } catch (error) {
+          reject(error);
+        }
+      });
     });
-    // return true
   } catch (error) {
     console.error(error);
     return false;

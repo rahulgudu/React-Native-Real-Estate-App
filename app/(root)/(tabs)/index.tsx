@@ -11,7 +11,9 @@ export default function Index() {
       }}>
       <Text className="text-3xl font-rubik text-gray-500">
         Welcome to my app
+        
       </Text>
+      <Link href={"/sign-in"}>SignIn</Link>
     </View>
   );
 }
