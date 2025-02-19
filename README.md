@@ -1,9 +1,6 @@
-# Made the Sign-In Screen
+# Setup SDK and Auth Function
 
-In this commit/segment we have created the signin screen of our app.
+In this commit/segment we have setup the sdk for the auth functionality.
 
-## New Things Learned
-- In <Stack> we have screenOptions which consists of headerShown. It is a boolean value. If it is false then the default header (/root/tabs/index.ts)  in  our app will be hidden
-- ScrollView component which allow the scroll automatically if needed
-- TouchOpacity, it is same as of button in web development and in place of onClick here we have onPress
-
+## Note
+- Check the video for setting up the auth in google console and appwrite
