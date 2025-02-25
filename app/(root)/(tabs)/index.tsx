@@ -5,8 +5,10 @@ import icons from "@/constants/icons";
 import images from "@/constants/images";
 import getGreetings from "@/libs/getGreetings";
 import { useGlobalContext } from "@/libs/global-provider";
+import seed from "@/libs/seed";
 import { Link } from "expo-router";
 import {
+  Button,
   FlatList,
   Image,
   ScrollView,
@@ -16,11 +18,13 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 export default function Index() {
-  const greet = getGreetings()
-  
+  const greet = getGreetings();
+
   const { user } = useGlobalContext();
   return (
     <SafeAreaView>
+      {/* For seeding data */}
+      {/* <Button title="Seed" onPress={seed} /> */}
       <FlatList
         data={[1, 2, 3, 4]}
         renderItem={({ item }) => <Card />}
