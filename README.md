@@ -1,7 +1,7 @@
-# 📌 Fetch Properties Function
+# 📌 Displayed properties data dynamically
 
-In this commit, we have created two functions to fetch properties data from the appwrite database
+In this commit, we have fetched the properties data from the appwrite DB and displayed them in the index tab.
 
-- Fetch Latest Properties: It returns all the latest properties those are added to the DB
+## New Things Learned
 
-- Fetch Properties: It return the properties based on the parameters like query, filter and limit
+- Indexing: To implement the search functionality we have created the indexes according to this project need in the appwrite properties collection.

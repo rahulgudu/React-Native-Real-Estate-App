@@ -163,7 +163,7 @@ export async function getProperties({
   limit: number;
 }) {
   try {
-    const buildQuery = [Query.orderAsc("$createdAt")];
+    const buildQuery = [Query.orderDesc("$createdAt")];
     if (filter && filter !== "All") {
       buildQuery.push(Query.equal("type", filter));
     }
