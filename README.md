@@ -1,4 +1,3 @@
-# 📌 Fixed the error/warning
+# 📌 Explore Screen
 
-In this commit, we have fixed the warning or error of "each card should have unique key".
-
+In this commit, we have created the explore screen ui.
