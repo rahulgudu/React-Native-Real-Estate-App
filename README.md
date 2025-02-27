@@ -1,7 +1,4 @@
-# 📌 Displayed properties data dynamically
+# 📌 Fixed the error/warning
 
-In this commit, we have fetched the properties data from the appwrite DB and displayed them in the index tab.
+In this commit, we have fixed the warning or error of "each card should have unique key".
 
-## New Things Learned
-
-- Indexing: To implement the search functionality we have created the indexes according to this project need in the appwrite properties collection.
